@@ -1,14 +1,16 @@
 package com.globalLogic.carRide.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.apache.commons.lang.RandomStringUtils;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
-@Table(name = "CUSTOMER")
-public class Customer {
+@Table(name = "Customer")
+public class CustomerEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,12 +31,9 @@ public class Customer {
     @Column(name = "phone_no")
     private long phoneNo;
 
-    @OneToMany
-    Set<Booking> booking = new HashSet<>();
-
-    public void setCid() {
-        this.cid = RandomStringUtils.randomAlphabetic(10);
-    }
+    @OneToMany(mappedBy = "customerEntity", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Collection<BookingEntity> bookingEntityList= new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -48,8 +47,8 @@ public class Customer {
         return cid;
     }
 
-    public void setCid(String cid) {
-        this.cid = cid;
+    public void setCid() {
+        this.cid = RandomStringUtils.randomAlphanumeric(10);
     }
 
     public String getFirstName() {
@@ -84,11 +83,11 @@ public class Customer {
         this.phoneNo = phoneNo;
     }
 
-    public Set<Booking> getBooking() {
-        return booking;
+    public List<BookingEntity> getBookingEntityList() {
+        return (List<BookingEntity>) bookingEntityList;
     }
 
-    public void setBooking(Set<Booking> booking) {
-        this.booking = booking;
+    public void setBookingEntityList(List<BookingEntity> bookingEntityList) {
+        this.bookingEntityList = bookingEntityList;
     }
 }

@@ -1,13 +1,14 @@
 package com.globalLogic.carRide.repository;
 
-import com.globalLogic.carRide.model.Customer;
+import com.globalLogic.carRide.model.CustomerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
-public interface CustomerRepo extends JpaRepository<Customer, Long> {
+public interface CustomerRepo extends JpaRepository<CustomerEntity, Long> {
 
-    Customer findByCid(String cId);
-
+    Optional<CustomerEntity> findByCid(String cId);
 
 }

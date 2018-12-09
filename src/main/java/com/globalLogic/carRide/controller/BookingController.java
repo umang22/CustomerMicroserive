@@ -1,7 +1,7 @@
 package com.globalLogic.carRide.controller;
 
 import com.globalLogic.carRide.dto.BookingDto;
-import com.globalLogic.carRide.model.Booking;
+import com.globalLogic.carRide.model.BookingEntity;
 import com.globalLogic.carRide.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +12,11 @@ import org.springframework.web.bind.annotation.*;
 public class BookingController {
 
     @Autowired
-    BookingService booking;
+    private BookingService bookingService;
 
     @RequestMapping(value = "/{cId}", method = RequestMethod.POST)
-    public Booking addBooking(@PathVariable("cId") String customerId, @RequestBody BookingDto bookingDto) {
-
-        booking.bookCab(customerId, bookingDto);
+    public BookingEntity addBooking(@PathVariable("cId") String customerId, @RequestBody BookingDto bookingDto) {
+        bookingService.bookCab(customerId, bookingDto);
         return null;
     }
 }
