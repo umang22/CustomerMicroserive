@@ -14,9 +14,11 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
+
+    //To book a ride
     @RequestMapping(value = "/{cId}", method = RequestMethod.POST)
-    public BookingEntity addBooking(@PathVariable("cId") String customerId, @RequestBody BookingDto bookingDto) {
+    public String addBooking(@PathVariable("cId") String customerId, @RequestBody BookingDto bookingDto) {
         bookingService.bookCab(customerId, bookingDto);
-        return null;
+        return "Cab booked";
     }
 }

@@ -25,8 +25,7 @@ public class CustomerController {
 
     //To fetch a customer by id
     @GetMapping("/getCustomer/{cid}")
-    public Optional<CustomerEntity> getCustomer(@PathVariable String id)
-    {
+    public Optional<CustomerEntity> getCustomer(@PathVariable("cid") String id) {
         return customerService.findCustomerByCid(id);
     }
 
@@ -44,9 +43,8 @@ public class CustomerController {
 
     //To get the history of booking of the given cutomer
     @GetMapping(value = "/{cid}/history")
-    public List<BookingEntity> customerBookings(@PathVariable("cid") String customerId ){
+    public List<BookingEntity> customerBookings(@PathVariable("cid") String customerId) {
         return customerService.customerBookings(customerId);
     }
-
 
 }

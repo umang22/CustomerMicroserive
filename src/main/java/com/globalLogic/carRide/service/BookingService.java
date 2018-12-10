@@ -21,18 +21,23 @@ public class BookingService {
     @Autowired
    private CustomerRepo customerRepo;
 
-    public void bookCab(String customerId, BookingDto bookingDto) {
+    public String bookCab(String customerId, BookingDto bookingDto) {
         Optional<CustomerEntity> persistedCustomer = customerRepo.findByCid(customerId);
-        BookingEntity bookingEntity = setBooking(persistedCustomer.get());
+        BookingEntity bookingEntity = setBooking(persistedCustomer.get(),bookingDto);
         bookingRepo.save(bookingEntity);
+        BookingStatus status = bookingEntity.getStatus();
+        return String.valueOf(status);
     }
 
-    private BookingEntity setBooking(CustomerEntity customerEntityPersisted) {
+    private BookingEntity setBooking(CustomerEntity customerEntityPersisted,BookingDto bookingDto) {
         BookingEntity bookingEntity = new BookingEntity();
         bookingEntity.setCustomerEntity(customerEntityPersisted);
         bookingEntity.setStatus(BookingStatus.BOOKED);
         bookingEntity.setBooking_time(LocalDateTime.now());
         bookingEntity.setBid();
+        bookingEntity.setCabType(bookingDto.getCabType());
+        bookingEntity.setStartAddress(bookingDto.getStartAddress());
+        bookingEntity.setDestination(bookingDto.getDestination());
         return bookingEntity;
     }
 }
