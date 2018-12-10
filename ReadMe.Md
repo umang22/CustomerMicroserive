@@ -1,17 +1,33 @@
-1.  Register
-http://localhost:8082/driver/register
-request :-
-{
-"firstName":"ram",
-"lastName":"ram",
-"dlNo":"DL00132",
-"vehicleType":"Essesntial",
-"registrationNo":"UP20BA007"
-}
+1.  Driver
+  1a.  http://localhost:8082/driver/register
+    request :-
+    {
+    "firstName":"Bret",
+    "lastName":"Pit",
+    "dlNo":"DL00132",
+    "vehicleType":"Essesntial",
+    "registrationNo":"UP20BA007"
+    }
+ response:- CV3ozNiGET  (this is a customer id)
 
-response:- CV3ozNiGET  (this is a customer id)
-
-
+   1.b //To get all registered drivers 
+   http://localhost:8082/driver/allDrivers
+    request:-
+    response:-  
+          [
+        {
+            "id": 1,
+            "firstName": "kushal",
+            "lastName": "rastogi",
+            "dlNo": "DL00132",
+            "registrationNo": "UP21BA0743",
+            "vehicleSegment": {
+                "id": 1,
+                "vehicleType": "Essesntial"
+            }
+        }
+    ]
+  
 2. Customer
 
   2a.//To register a new customer
