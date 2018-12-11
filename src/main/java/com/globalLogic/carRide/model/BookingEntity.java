@@ -5,6 +5,7 @@ import com.globalLogic.carRide.dto.BookingStatus;
 import org.apache.commons.lang.RandomStringUtils;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,6 +24,8 @@ public class BookingEntity {
     @Enumerated(EnumType.STRING)
     private BookingStatus status;
 
+    private BigInteger fare;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cid", referencedColumnName = "id")
     @JsonBackReference
@@ -34,6 +37,14 @@ public class BookingEntity {
     private String startAddress;
 
     private String destination;
+
+    public BigInteger getFare() {
+        return fare;
+    }
+
+    public void setFare(BigInteger fare) {
+        this.fare = fare;
+    }
 
     public String getCabType() {
         return cabType;
