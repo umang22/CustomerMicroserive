@@ -19,10 +19,10 @@ public class BookingEntity {
     @Column(name = "booking_time")
     private LocalDateTime booking_time;
 
-    private String bid;
-
     @Enumerated(EnumType.STRING)
     private BookingStatus status;
+
+    private String bid;
 
     private BigInteger fare;
 
@@ -32,11 +32,11 @@ public class BookingEntity {
     private CustomerEntity customerEntity;
 
 
-    private String cabType;
-
     private String startAddress;
 
     private String destination;
+
+    private String cabType;
 
     public BigInteger getFare() {
         return fare;
